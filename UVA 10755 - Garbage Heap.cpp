@@ -67,7 +67,6 @@ long long int f1( long long int mat[][21],int b,int c)
 }
 int main()
 {
-	in;out;
 	long long int mat[21][21][21];
 	int t;
 	cin>>t;
