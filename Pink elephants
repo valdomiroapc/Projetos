@@ -1,0 +1,51 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <queue>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <set>
+#include <map>
+#include <string>
+using namespace std;
+#define ull unsigned long long int
+#define ll long long int
+#define pb push_back
+#define mp make_pair
+typedef vector<int>vi;
+typedef pair<int,int> ii;
+typedef pair<int,ii> iii;
+typedef vector<ii> vii;
+typedef vector<iii> viii;
+typedef pair<int, string> istr;
+typedef vector<istr> vistr;
+typedef vector< vector<int> > vvi;
+typedef vector< vector<ii> > vvii;
+const int ox[8]={1,0,-1,0,1,-1,1,-1};
+const int oy[8]={0,1,0,-1,1,-1,-1,1};
+const int inf = 1000000001;
+const int mod = 1e9+7;
+const int tam = 1e5+5;
+int n,m;
+long long int dp[300][300];
+long long int f(int i,int num)
+{
+	if(i == n)
+		return 1;
+	long long int &ans = dp[i][num];
+	if(ans != -1)
+		return ans;
+	ans = 0;
+	for(int j=num+1;j<=m;j++)
+		ans=((ans%mod) + (f(i+1,j)%mod))%mod;
+	return ans;
+}
+int main()
+{
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	scanf("%d%d",&n,&m);
+	memset(dp,-1,sizeof(dp));
+	printf("%lld\n",f(0,0));
+}
